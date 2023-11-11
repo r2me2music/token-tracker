@@ -1,0 +1,66 @@
+  /* font by MEK.txt, CC0 License */
+@font-face {
+  font-family: "MEK-Mono";
+  src: url(../assets/MEK-Mono.woff) format("woff");
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  /* font-family: 'Inter', sans-serif; */
+  font-family: 'MEK-Mono', 'Courier New', Courier, monospace;
+  background-color: #9945ff49;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: black;
+  height: 90px;
+  padding: 30px 25px;
+
+}
+
+#logo-image {
+  height: 40px;
+  margin-right: 10px;
+}
+
+nav > img {
+  filter: invert(52%) sepia(80%) saturate(6488%) hue-rotate(251deg) brightness(100%) contrast(102%);
+}
+
+nav > h1 {
+  margin-right: auto;
+  background: -webkit-linear-gradient(60deg, #9945FF, #14F195);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+nav > h4 {
+  color: #9945ff49;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 25px;
+  /* background-color: #21222A; */
+}
+
+#main-body {
+  display: flex;
+  margin-bottom: auto;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
