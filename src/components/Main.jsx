@@ -2,52 +2,48 @@ import React from "react"
 import "./index.css"
 
 export default function Main() {
-  const [display, setDisplay] = React.useState({
-    price: "--"
-  })
 
-  const [currentPrice, setCurrentPrice] = React.useState([])
+  // state to display price
 
-  React.useEffect(() => {
+  const [display, setDisplay] = React.useState("");
+
+  // fetch price from API 
+
+  const getPrice = () => {
     fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
         .then(res => res.json())
-        .then(data => setCurrentPrice(data.solana.usd))
-        console.log("fetch ran")
-        console.log(currentPrice)
-        // setTimeout(updatePrice, 3000)
-  }, [getPrice])
-
-  function getPrice() {
-    const price = currentPrice.price
-    setDisplay(prevDisplay => ({
-      ...prevDisplay,
-      price: price
-    }))
-    console.log("price updated from click")
+        .then(data => setDisplay(data.solana.usd))
+        console.log("fetch price")
   }
 
-  // function handleChange(event) {
-  //   const {name, value} = event.target
-  //   setDisplay(prevDisplay => ({
-  //     ...prevDisplay,
-  //     [name]: value
-  //   }))
-  // }
+  // fetch price on mount (page load)
+
+  React.useEffect(() => {
+    getPrice()
+  }, [])
+
+  // update price every 10 seconds
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      getPrice()
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   
 
   return (
     <main>
       <div id="main-body">
-        <h2>Solana price: </h2>
+        <h2>Solana price:</h2>
         <div 
-          // name="price"
-          // value={display.price}
-          // onChange={handleChange}
+          id="price-text"
           onClick={getPrice}
         >
-          <h2>
-            {display.price}
-          </h2>
+          <h1>
+            ${display}
+          </h1>
         </div>
       </div>
       <footer>
