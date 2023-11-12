@@ -11,16 +11,18 @@
 body {
   margin: 0;
   font-family: 'MEK-Mono', 'Courier New', Courier, monospace;
-  background-color: #9945ff49;
+  /* background-color: #9945ff49; */
+  background: -webkit-linear-gradient(60deg, #9945FF, #14F195);
+  background-attachment: fixed;
 }
 
 nav {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   background-color: black;
-  height: 90px;
+  height: 70px;
   padding: 30px 25px;
 
 }
