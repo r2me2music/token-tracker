@@ -5,7 +5,7 @@ import "./index.css"
 export default function Navbar() {
     return (
         <nav>
-            <h1>[T2] Token Tracker</h1>
+            <h2>[T2]</h2>
         </nav>
     )
 }

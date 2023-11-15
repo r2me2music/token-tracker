@@ -11,51 +11,113 @@
 body {
   margin: 0;
   font-family: 'MEK-Mono', 'Courier New', Courier, monospace;
-  /* background-color: #9945ff49; */
   background: -webkit-linear-gradient(60deg, #9945FF, #14F195);
   background-attachment: fixed;
 }
 
+
 nav {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  /* background-color: black; */
+  /* height: 70px; */
+  /* padding: 20px 25px; */
+
+}
+
+nav > h2 {
+  color: black;
+  margin: 20px auto 20px 20px;
+  padding: 0;
+  /* opacity: 0.5; */
+  /* background: -webkit-linear-gradient(60deg, #9945FF, #14F195);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+}
+
+
+main {
+  padding: 0;
+  margin: 0;
+}
+
+#title-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   background-color: black;
-  height: 70px;
-  padding: 30px 25px;
-
+  margin: 0;
+  padding: 0px;
+  /* height: 70px; */
+  width: 100%;
 }
 
-#logo-image {
-  height: 40px;
-  margin-right: 10px;
-}
-
-nav > img {
-  filter: invert(52%) sepia(80%) saturate(6488%) hue-rotate(251deg) brightness(100%) contrast(102%);
-}
-
-nav > h1 {
+#title-bar > h2 {
   background: -webkit-linear-gradient(60deg, #9945FF, #14F195);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-main {
-  padding: 0px 25px;
+  margin: 20px 0px
 }
 
 #main-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 350px;
+  min-height: 210px;
+  padding: 0;
+  margin-top: 70px;
   margin-bottom: auto;
+  margin-right: auto;
+  margin-left: auto;
+  border: 2px solid black;
 }
 
-#price-text > h1 {
-  margin-top: 0;
+#price-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+#price-section > h2 {
+  /* margin: 20px 0px 0px 0px; */
+  text-align: center;
+}
+
+#price-text {
+  /* margin: 20px 0; */
+  color: black;
+  font-size: 2.4em;
+  text-align: center;
+}
+
+@keyframes price {
+  from {color: rgba(255, 255, 255, 0.33);}
+  to {color: black;}
+}
+
+#price-text.priceFlash {
+  color: black;
+  animation-name: price;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+}
+
+#price-text.defaultText {
+  color: black;
+}
+
+#progress-bar-section {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 70px;
+  padding: 0;
+}
+
+#progress-bar {
+  color: #9945FF;
 }
 
 footer {
