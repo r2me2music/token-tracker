@@ -77,19 +77,18 @@ main {
 #price-section {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  /* justify-content: space-between; */
 }
 
 #price-section > h2 {
-  /* margin: 20px 0px 0px 0px; */
   text-align: center;
 }
 
 #price-text {
-  /* margin: 20px 0; */
   color: black;
   font-size: 2.4em;
   text-align: center;
+  margin-top: auto;
 }
 
 @keyframes price {
@@ -108,7 +107,9 @@ main {
   color: black;
 }
 
-#progress-bar-section {
+/* --MEK progress bar (old)
+
+/* #progress-bar-section {
   display: inline-flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -116,8 +117,22 @@ main {
   padding: 0;
 }
 
-#progress-bar {
-  color: #9945FF;
+.progress-bar {
+  color: black;
+} */
+
+.progress-container-w3 {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  background-color: none;
+}
+
+.progress-bar-w3 {
+  background: -webkit-linear-gradient(60deg, #9945FF, #14F195);
+  height: 4px;
+  width: 1%;
 }
 
 footer {

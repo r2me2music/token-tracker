@@ -3,67 +3,65 @@ import "./index.css"
 
 export default function Main() {
 
-  // state to display price
+  // --state to display price
+
   const [display, setDisplay] = React.useState("");
 
-  // fetch price from API 
-  const getPrice = () => {
+  // --arbitrary counter for useEffect
+
+  const [count, setCount] = React.useState(0);
+
+  // --Fixed 2 decimal places for displayed price
+
+  const priceNum = parseFloat(display);
+
+  const priceFixedDec = priceNum.toFixed(2);
+
+  // --Price color indicators
+
+  const [priceColor, setPriceColor] = React.useState();
+
+  // --fetch price from API 
+
+  React.useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
       .then(res => res.json())
       .then(data => setDisplay(data.solana.usd))
     animateTextColor()
-  }
+    move();
+  }, [count]);
 
-  // Fixed 2 decimol places for displayed price
-  const priceNum = parseFloat(display);
-  const priceFixed = priceNum.toFixed(2);
-    
-  // Price color indicators
-  const [priceColor, setPriceColor] = React.useState()
+  // --Trigger text color css animation
 
-  // Trigger text color css animation
   function animateTextColor() {
     setPriceColor(prevColor => "priceFlash")
-  }
+  };
 
-  // Trigger text color default (to reset animation)
+  // --Trigger text color default (to reset animation)
+
   function resetTextColor() {
     setPriceColor(prevColor => "defaultText")
-  }
-  
-  // Timer with progress meter
-  const progressArray = []
-  const progressBar = document.getElementById("progress-bar")
+  };
 
-  // Reset counter/progress bar on mount
-  React.useEffect(() => {
-      resetArray()
-  }, []) 
-  
-  // Counter, 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      progressBarIncrease()
-        let progressArrayBar = ""
-        for (let i = 0; i < progressArray.length; i++) {
-          progressArrayBar += `${progressArray[i]}`
-        }
-        progressBar.innerHTML = progressArrayBar  
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
+  // --Progress bar
 
-  function progressBarIncrease() {
-    if (progressArray.length < 5) {
-      progressArray.push("[]")
-    } else resetArray()
-  }
+  function move() {
+    var elem = document.getElementById("myBar")
+    var width = 1;
+    var id = setInterval(frame, 50);
+    function frame() {
+      if (width == 100) {
+        clearInterval(id);
+        console.log("cleared Interval");
+        setCount(prevCount => prevCount + 1);
+      } else {
+        width++;
+        elem.style.width = width + '%';
+        console.log(width);
+      };
+    };
+  };
 
-  function resetArray() {
-    progressArray.length = 0;
-    progressArray.push();
-    getPrice();
-  }
 
   return (
     <main>
@@ -76,18 +74,18 @@ export default function Main() {
           <h1 
             id="price-text" 
             className={priceColor} 
-            onClick={getPrice}
             onAnimationEnd={resetTextColor}
           >
-            ${priceFixed}
+            ${priceFixedDec}
           </h1>
-            <div 
-              id="progress-bar-section" 
-              onClick={resetArray}
-            >
-              <h2>[Refresh]</h2>
-              <h2 id="progress-bar"></h2>
-            </div>
+          <div className="progress-container-w3">
+            <div id="myBar" className="progress-bar-w3"></div>
+          </div>
+          {/* <button 
+            onClick={() => setCount(prevCount => prevCount + 1)}
+          >
+            Count
+          </button> */}
         </div>
       </div>
       <footer>
@@ -95,4 +93,4 @@ export default function Main() {
       </footer>
     </main>
   )
-}
+};
