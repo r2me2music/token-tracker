@@ -1,5 +1,4 @@
 import React from "react"
-import Logo from "../assets/gitd-logo.png"
 import "./index.css"
 
 export default function Navbar() {

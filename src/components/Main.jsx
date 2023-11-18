@@ -3,65 +3,72 @@ import "./index.css"
 
 export default function Main() {
 
-  // --state to display price
+  // --sets state for fetched price from API
 
   const [display, setDisplay] = React.useState("");
 
-  // --arbitrary counter for useEffect
+  // --arbitrary counter
+  // trigger useEffect when progress bar restarts
 
   const [count, setCount] = React.useState(0);
 
-  // --Fixed 2 decimal places for displayed price
+  const elem = document.getElementById("price-text");
 
-  const priceNum = parseFloat(display);
-
-  const priceFixedDec = priceNum.toFixed(2);
-
-  // --Price color indicators
+  // --Sets state for text color/flash annimation
 
   const [priceColor, setPriceColor] = React.useState();
 
-  // --fetch price from API 
+  // --fetch price from API
+  // fixes data to 2 decimal places
+  // triggers text color state annimation
+  // triggers progress bar
+  // uses arbitrary count state as dependency
 
   React.useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd")
       .then(res => res.json())
-      .then(data => setDisplay(data.solana.usd))
+      .then(data => setDisplay(data.solana.usd.toFixed(2)))
     animateTextColor()
     move();
   }, [count]);
 
-  // --Trigger text color css animation
+  // --Trigger text color/flash css animation
 
   function animateTextColor() {
     setPriceColor(prevColor => "priceFlash")
   };
 
-  // --Trigger text color default (to reset animation)
+  // --Trigger text to default color (to reset animation)
+  // triggered by onAnnimationEnd in h1 tag
 
   function resetTextColor() {
     setPriceColor(prevColor => "defaultText")
   };
 
-  // --Progress bar
+  // --Progress bar (from online example)
+  // 100% full triggers arbitray count state 
+  // which is the dependency for useEffect to 
+  // fetch data from API
 
   function move() {
     var elem = document.getElementById("myBar")
     var width = 1;
-    var id = setInterval(frame, 50);
+    var id = setInterval(frame, 70);
     function frame() {
       if (width == 100) {
         clearInterval(id);
-        console.log("cleared Interval");
         setCount(prevCount => prevCount + 1);
       } else {
         width++;
         elem.style.width = width + '%';
-        console.log(width);
       };
     };
   };
 
+  // --h1 tag displays price
+  // ternary to display "--" if api call doesn't fetch data
+  // className change to display text color flash annimation
+  // --myBar div displays progress bar annimation
 
   return (
     <main>
@@ -76,16 +83,11 @@ export default function Main() {
             className={priceColor} 
             onAnimationEnd={resetTextColor}
           >
-            ${priceFixedDec}
+            ${Number.isNaN(display) ? "--" : display}
           </h1>
           <div className="progress-container-w3">
             <div id="myBar" className="progress-bar-w3"></div>
           </div>
-          {/* <button 
-            onClick={() => setCount(prevCount => prevCount + 1)}
-          >
-            Count
-          </button> */}
         </div>
       </div>
       <footer>

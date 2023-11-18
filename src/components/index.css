@@ -1,4 +1,5 @@
   /* font by MEK.txt, CC0 License */
+
 @font-face {
   font-family: "MEK-Mono";
   src: url(../assets/MEK-Mono.woff) format("woff");
@@ -7,6 +8,8 @@
 * {
   box-sizing: border-box;
 }
+
+/* color gradient from official Solana style guide */
 
 body {
   margin: 0;
@@ -22,20 +25,12 @@ nav {
   align-items: center;
   margin: 0;
   padding: 0;
-  /* background-color: black; */
-  /* height: 70px; */
-  /* padding: 20px 25px; */
-
 }
 
 nav > h2 {
   color: black;
   margin: 20px auto 20px 20px;
   padding: 0;
-  /* opacity: 0.5; */
-  /* background: -webkit-linear-gradient(60deg, #9945FF, #14F195);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
 }
 
 
@@ -52,7 +47,6 @@ main {
   background-color: black;
   margin: 0;
   padding: 0px;
-  /* height: 70px; */
   width: 100%;
 }
 
@@ -64,7 +58,7 @@ main {
 }
 
 #main-body {
-  width: 350px;
+  width: 280px;
   min-height: 210px;
   padding: 0;
   margin-top: 70px;
@@ -77,7 +71,6 @@ main {
 #price-section {
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
 }
 
 #price-section > h2 {
@@ -107,20 +100,6 @@ main {
   color: black;
 }
 
-/* --MEK progress bar (old)
-
-/* #progress-bar-section {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-left: 70px;
-  padding: 0;
-}
-
-.progress-bar {
-  color: black;
-} */
-
 .progress-container-w3 {
   display: inline-flex;
   justify-content: flex-start;
@@ -134,6 +113,7 @@ main {
   height: 4px;
   width: 1%;
 }
+
 
 footer {
   position: absolute;
